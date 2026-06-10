@@ -70,6 +70,22 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
     paused.current = false;
   }
 
+  function onTouchStart(e: React.TouchEvent) {
+    isDown.current = true;
+    paused.current = true;
+    startX.current = e.touches[0].pageX;
+    dragOffset.current = 0;
+  }
+
+  function onTouchMove(e: React.TouchEvent) {
+    if (!isDown.current) return;
+    dragOffset.current = e.touches[0].pageX - startX.current;
+  }
+
+  function onTouchEnd() {
+    onMouseUp();
+  }
+
   if (projects.length === 0) return <p className="text-center text-zinc-600 py-12">No projects added yet.</p>;
 
   function handleClick(url: string | null) {
@@ -87,6 +103,9 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseUp}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
           className="flex gap-6 select-none"
           style={{ cursor: "grab", width: "max-content" }}
         >

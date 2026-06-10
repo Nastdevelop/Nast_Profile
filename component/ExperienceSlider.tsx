@@ -29,7 +29,7 @@ export default function ExperienceSlider({ experiences }: { experiences: Exp[] }
   const animRef = useRef<number | null>(null);
   const paused = useRef(false);
 
-  const cardWidth = 288;
+  const cardWidth = 320;
   const gap = 24;
   const step = cardWidth + gap;
   const totalWidth = experiences.length * step;
@@ -75,6 +75,22 @@ export default function ExperienceSlider({ experiences }: { experiences: Exp[] }
     paused.current = false;
   }
 
+  function onTouchStart(e: React.TouchEvent) {
+    isDown.current = true;
+    paused.current = true;
+    startX.current = e.touches[0].pageX;
+    dragOffset.current = 0;
+  }
+
+  function onTouchMove(e: React.TouchEvent) {
+    if (!isDown.current) return;
+    dragOffset.current = e.touches[0].pageX - startX.current;
+  }
+
+  function onTouchEnd() {
+    onMouseUp();
+  }
+
   if (experiences.length === 0) return <p className="text-center text-zinc-600 py-12">No experience added yet.</p>;
 
   return (
@@ -86,13 +102,16 @@ export default function ExperienceSlider({ experiences }: { experiences: Exp[] }
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseUp}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
           className="flex gap-6 select-none"
           style={{ cursor: "grab", width: "max-content" }}
         >
           {[...experiences, ...experiences].map((exp, i) => (
             <div
               key={`${exp.id}-${i}`}
-              className="shrink-0 w-72 rounded-2xl bg-zinc-900/70 border border-zinc-800 p-5 flex flex-col transition-colors duration-300 hover:border-zinc-700 hover:shadow-lg hover:shadow-blue-500/5"
+              className="shrink-0 w-50 rounded-2xl bg-zinc-900/70 border border-zinc-800 p-5 flex flex-col transition-colors duration-300 hover:border-zinc-700 hover:shadow-lg hover:shadow-blue-500/5"
             >
               <span className="text-xs font-mono text-zinc-500 tracking-wide">
                 {exp.tahun}
