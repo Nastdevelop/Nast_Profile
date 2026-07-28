@@ -157,9 +157,6 @@ export default function Sidebar() {
               <Shield className="w-4 h-4" /> Admin Dashboard
             </Link>
           )}
-          <div className="rounded-xl bg-gradient-to-br from-blue-600/10 to-purple-600/10 border border-zinc-800 p-4 text-center">
-            <p className="text-xs text-zinc-500">Open to opportunities</p>
-          </div>
         </div>
       </aside>
     </>
