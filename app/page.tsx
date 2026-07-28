@@ -156,7 +156,7 @@ Jagat Nasutio
       {/* ============ FOOTER ============ */}
       <footer className="w-full py-8 border-t border-zinc-800">
         <p className="text-center text-sm text-zinc-600">
-          &copy; {new Date().getFullYear()} Jagat Nasutio. Built with Next.js & Tailwind CSS.
+          &copy; {new Date().getFullYear()} Jagat Nasutio
         </p>
       </footer>
     </div>
