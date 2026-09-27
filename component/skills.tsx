@@ -34,13 +34,13 @@ export default async function Skills({
       <table className="w-full">
         <thead>
           <tr className="border-b border-zinc-800 bg-zinc-900/50">
-            <th className="px-6 py-4 max-sm:px-3 max-sm:py-3 text-left text-sm max-sm:text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+            <th className="px-4 py-3 max-sm:px-3 max-sm:py-2 text-left text-sm max-sm:text-xs font-semibold text-zinc-300 uppercase tracking-wider">
               Item
             </th>
-            <th className="px-6 py-4 max-sm:px-3 max-sm:py-3 text-left text-sm max-sm:text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+            <th className="px-4 py-3 max-sm:px-3 max-sm:py-2 text-left text-sm max-sm:text-xs font-semibold text-zinc-300 uppercase tracking-wider">
               Category
             </th>
-            <th className="px-6 py-4 max-sm:px-3 max-sm:py-3 text-left text-sm max-sm:text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+            <th className="px-4 py-3 max-sm:px-3 max-sm:py-2 text-left text-sm max-sm:text-xs font-semibold text-zinc-300 uppercase tracking-wider">
               Purpose
             </th>
           </tr>
@@ -52,24 +52,24 @@ export default async function Skills({
               className="border-b border-zinc-800/50 transition-all duration-200 hover:bg-zinc-800/40 animate-fade-in"
               style={{ animationDelay: `${i * 50}ms`, animationFillMode: "both" }}
             >
-              <td className="px-6 py-4 max-sm:px-3 max-sm:py-3 text-sm max-sm:text-xs font-medium text-zinc-200">
+              <td className="px-4 py-3 max-sm:px-3 max-sm:py-2 text-sm max-sm:text-xs font-medium text-zinc-200">
                 {skill.item}
               </td>
-              <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
+              <td className="px-4 py-3 max-sm:px-3 max-sm:py-2">
                 <span
                   className={`inline-block rounded-full px-3 py-1 max-sm:px-2 max-sm:py-0.5 text-xs max-sm:text-[10px] font-medium ${getCategoryColor(skill.cate)}`}
                 >
                   {skill.cate}
                 </span>
               </td>
-              <td className="px-6 py-4 max-sm:px-3 max-sm:py-3 text-sm max-sm:text-xs text-zinc-400">
+              <td className="px-4 py-3 max-sm:px-3 max-sm:py-2 text-sm max-sm:text-xs text-zinc-400">
                 {skill.purpose}
               </td>
             </tr>
           ))}
           {skills.length === 0 && (
             <tr>
-              <td colSpan={3} className="px-6 py-12 max-sm:px-4 max-sm:py-8 text-center text-sm max-sm:text-xs text-zinc-600">
+              <td colSpan={3} className="px-6 py-10 max-sm:px-4 max-sm:py-8 text-center text-sm max-sm:text-xs text-zinc-600">
                 No skills added yet.
               </td>
             </tr>
@@ -78,7 +78,7 @@ export default async function Skills({
       </table>
 
       {hasMore && (
-        <div className="flex justify-center py-6">
+        <div className="flex justify-center py-5">
           <Link
             href="/skills"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40"

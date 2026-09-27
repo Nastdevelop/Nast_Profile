@@ -32,6 +32,7 @@ model Project {
   title    String
   images   String?
   desc     String?
+  content  String?
   tech     String  @default("[]")
   posisi   String @default("fullstack")
   url      String?

@@ -14,13 +14,14 @@ export async function PUT(
   if (!existing) return fail("Not found", 404);
 
   try {
-    const { title, images, desc, tech, posisi, url } = await req.json();
+    const { title, images, desc, content, tech, posisi, url } = await req.json();
     const updated = await prisma.project.update({
       where: { id },
       data: {
         ...(title !== undefined && { title }),
         ...(images !== undefined && { images }),
         ...(desc !== undefined && { desc }),
+        ...(content !== undefined && { content }),
         ...(tech !== undefined && { tech: JSON.stringify(tech) }),
         ...(posisi !== undefined && { posisi }),
         ...(url !== undefined && { url }),

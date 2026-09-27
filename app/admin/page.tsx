@@ -7,6 +7,7 @@ import Image from "next/image";
 import {
   Plus, Pencil, Trash2, LogOut, Loader2, RefreshCw, X, Upload,
 } from "lucide-react";
+import { ExperienceTable } from "./experience-table";
 
 type Tab = "experience" | "skills" | "projects";
 
@@ -23,7 +24,7 @@ interface Project {
 function emptyForm(tab: Tab): Record<string, string> {
   if (tab === "experience") return { jenis: "", content: "", tahun: "" };
   if (tab === "skills") return { item: "", cate: "", purpose: "" };
-  return { title: "", images: "", tech: "", posisi: "fullstack", url: "" };
+  return { title: "", images: "", desc: "", content: "", tech: "", posisi: "fullstack", url: "" };
 }
 
 export default function AdminDashboard() {
@@ -233,9 +234,9 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main */}
-      <main className="ml-64 flex-1 p-8 overflow-y-auto">
+      <main className="ml-64 flex-1 p-6 overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-zinc-100 capitalize">
               {tab} Management
@@ -347,12 +348,20 @@ export default function AdminDashboard() {
                           </div>
                         )}
                       </div>
+                    ) : tab === "projects" && key === "content" ? (
+                      <textarea
+                        value={form[key] ?? ""}
+                        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                        rows={6}
+                        className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-y"
+                        placeholder="Detailed explanation shown on the project detail page. Separate paragraphs with a blank line."
+                      />
                     ) : (
                       <input
                         value={form[key] ?? ""}
                         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
                         className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
-                        required={key !== "images" && key !== "posisi" && key !== "url"}
+                        required={key !== "images" && key !== "posisi" && key !== "url" && key !== "desc" && key !== "content"}
                       />
                     )}
                   </div>
@@ -386,6 +395,9 @@ export default function AdminDashboard() {
         )}
 
         {/* Table */}
+        {tab === "experience" ? (
+          <ExperienceTable data={experiences} onEdit={handleEdit} onDelete={handleDelete} />
+        ) : (
         <div className="overflow-x-auto rounded-xl border border-zinc-800">
           <table className="w-full">
             <thead>
@@ -394,7 +406,7 @@ export default function AdminDashboard() {
                 {tab === "projects" && (
                   <th className="px-5 py-3.5 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">Image</th>
                 )}
-                {Object.keys(emptyForm(tab)).filter((k) => k !== "images" && k !== "url").map((k) => (
+                {Object.keys(emptyForm(tab)).filter((k) => k !== "images" && k !== "url" && k !== "content").map((k) => (
                   <th key={k} className="px-5 py-3.5 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                     {k}
                   </th>
@@ -428,7 +440,7 @@ export default function AdminDashboard() {
                         )}
                       </td>
                     )}
-                    {Object.keys(emptyForm(tab)).filter((k) => k !== "images" && k !== "url").map((k) => (
+                    {Object.keys(emptyForm(tab)).filter((k) => k !== "images" && k !== "url" && k !== "content").map((k) => (
                       <td key={k} className="px-5 py-3.5 text-sm text-zinc-300 max-w-[200px] truncate">
                         {String(row[k] ?? "") || "—"}
                       </td>
@@ -478,6 +490,7 @@ export default function AdminDashboard() {
             </tbody>
           </table>
         </div>
+        )}
       </main>
     </div>
   );

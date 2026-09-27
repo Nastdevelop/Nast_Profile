@@ -14,11 +14,11 @@ export async function POST(req: NextRequest) {
   if (error) return error;
 
   try {
-    const { title, images, desc, tech, posisi, url } = await req.json();
+    const { title, images, desc, content, tech, posisi, url } = await req.json();
     if (!title) return fail("title is required");
 
     const created = await prisma.project.create({
-      data: { title, images, desc, tech: JSON.stringify(tech ?? []), posisi, url, authorId: userId! },
+      data: { title, images, desc, content, tech: JSON.stringify(tech ?? []), posisi, url, authorId: userId! },
     });
     return ok({ ...created, tech: safeParseJson(created.tech) }, 201);
   } catch (err) {

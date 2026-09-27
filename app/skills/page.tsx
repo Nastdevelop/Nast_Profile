@@ -7,10 +7,10 @@ export const dynamic = "force-dynamic";
 export default function SkillsPage() {
   return (
     <div className="min-h-dvh flex flex-col">
-      <div className="flex-1 py-24 px-6 max-w-4xl mx-auto w-full">
+      <div className="flex-1 py-12 md:py-16 px-6 max-w-4xl mx-auto w-full">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Home
