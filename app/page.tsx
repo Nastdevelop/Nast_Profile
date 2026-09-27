@@ -147,7 +147,7 @@ Jagat Nasutio
           My Projects
         </h2>
         <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
-          A selection of projects I have built to sharpen my skill.
+          A selection of projects I have built to sharpen my skills.
         </p>
 
         <ProjectSlider projects={projects} />
