@@ -144,7 +144,7 @@ Jagat Nasutio
           </span>
         </div>
         <h2 className="text-center font-bold text-2xl md:text-3xl text-zinc-100">
-          My Project
+          My Projects
         </h2>
         <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
           A selection of projects I have built to sharpen my skills.
