@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useToast } from "@/component/Toast";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -10,27 +11,37 @@ export default function AdminLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const toast = useToast();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await res.json();
-    setLoading(false);
+      const data = await res.json();
+      setLoading(false);
 
-    if (!res.ok) {
-      setError(data.error || "Login failed");
-      return;
+      if (!res.ok) {
+        const message = data.error || "Login failed";
+        setError(message);
+        toast.error(message);
+        return;
+      }
+
+      toast.success("Signed in");
+      router.push("/admin");
+    } catch {
+      setLoading(false);
+      setError("Something went wrong");
+      toast.error("Something went wrong");
     }
-
-    router.push("/admin");
   }
 
   return (

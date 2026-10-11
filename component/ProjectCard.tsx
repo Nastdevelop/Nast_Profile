@@ -12,7 +12,15 @@ const gradients = [
   "from-indigo-600 to-violet-500",
 ];
 
-export default function ProjectCard({ project, gradientIndex = 0 }: { project: Project; gradientIndex?: number }) {
+export default function ProjectCard({
+  project,
+  gradientIndex = 0,
+  footerSuffix,
+}: {
+  project: Project;
+  gradientIndex?: number;
+  footerSuffix?: React.ReactNode;
+}) {
   return (
     <article className="group h-full flex flex-col rounded-2xl bg-zinc-900/70 border border-zinc-800 overflow-hidden transition-all duration-300 hover:border-zinc-700 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1">
       <div className={`h-2 w-full bg-gradient-to-r ${gradients[gradientIndex % gradients.length]}`} />
@@ -66,6 +74,7 @@ export default function ProjectCard({ project, gradientIndex = 0 }: { project: P
           <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3" />
           </svg>
+          {footerSuffix}
         </span>
       </div>
     </article>

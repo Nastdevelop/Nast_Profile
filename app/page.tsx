@@ -130,34 +130,34 @@ Jagat Nasutio
           I may not learn the fastest, but I never stop growing. Here is the
           evidence of my continuous progress.
         </p>
-        <Skills limit={5} />
-      </section>
+          <Skills limit={5} />
+        </section>
 
-      {/* ============ PROJECTS ============ */}
-      <section
-        id="projects"
-        className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto"
-      >
-        <div className="text-center mb-4">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">
-            Portfolio
-          </span>
-        </div>
-        <h2 className="text-center font-bold text-2xl md:text-3xl text-zinc-100">
-          My Projects
-        </h2>
-        <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
-          A selection of projects I have built to sharpen my skills.
-        </p>
+        {/* ============ PROJECTS ============ */}
+        <section
+          id="projects"
+          className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto"
+        >
+          <div className="text-center mb-4">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">
+              Portfolio
+            </span>
+          </div>
+          <h2 className="text-center font-bold text-2xl md:text-3xl text-zinc-100">
+            My Projects
+          </h2>
+          <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
+            A selection of projects I have built to sharpen my skills.
+          </p>
 
-        <ProjectSlider projects={projects} />
-      </section>
-      
-      <footer className="w-full py-6 border-t border-zinc-800">
-        <p className="text-center text-sm text-zinc-600">
-          &copy; {new Date().getFullYear()} Jagat Nasutio
-        </p>
-      </footer>
-    </div>
-  );
-}
+          <ProjectSlider projects={projects} />
+        </section>
+        
+        <footer className="w-full py-6 border-t border-zinc-800">
+          <p className="text-center text-sm text-zinc-600">
+            &copy; {new Date().getFullYear()} Jagat Nasutio
+          </p>
+        </footer>
+      </div>
+    );
+  }

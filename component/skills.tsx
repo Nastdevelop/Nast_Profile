@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import LinkSpinner from "@/component/LinkSpinner";
 
 const categoryColors: Record<string, string> = {
   frontend: "bg-blue-500/20 text-blue-300",
@@ -84,6 +85,7 @@ export default async function Skills({
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40"
           >
             Show More ({all.length - limit} more)
+            <LinkSpinner />
           </Link>
         </div>
       )}

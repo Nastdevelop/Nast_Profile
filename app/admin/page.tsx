@@ -8,6 +8,7 @@ import {
   Plus, Pencil, Trash2, LogOut, Loader2, RefreshCw, X, Upload,
 } from "lucide-react";
 import { ExperienceTable } from "./experience-table";
+import { useToast } from "@/component/Toast";
 
 type Tab = "experience" | "skills" | "projects";
 
@@ -51,6 +52,13 @@ export default function AdminDashboard() {
   // error
   const [formError, setFormError] = useState("");
 
+  // pending actions
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const toast = useToast();
+
   useEffect(() => {
     let cancelled = false;
     fetch("/api/auth/me").then((res) => {
@@ -67,12 +75,17 @@ export default function AdminDashboard() {
     fetchData(tab);
   }, [tab, auth]);
 
-  async function fetchData(t: Tab) {
-    const res = await fetch(`/api/${t}`);
-    const data = await res.json();
-    if (t === "experience") setExperiences(data);
-    else if (t === "skills") setSkills(data);
-    else setProjects(data);
+  async function fetchData(t: Tab, showSpinner = false) {
+    if (showSpinner) setRefreshing(true);
+    try {
+      const res = await fetch(`/api/${t}`);
+      const data = await res.json();
+      if (t === "experience") setExperiences(data);
+      else if (t === "skills") setSkills(data);
+      else setProjects(data);
+    } finally {
+      if (showSpinner) setRefreshing(false);
+    }
   }
 
   function handleEdit(item: Record<string, unknown>) {
@@ -116,7 +129,9 @@ export default function AdminDashboard() {
     setSaving(false);
     if (!res.ok) {
       const data = await res.json();
-      setFormError(data.error || "Something went wrong");
+      const message = data.error || "Something went wrong";
+      setFormError(message);
+      toast.error(message);
       return;
     }
     setFormError("");
@@ -124,17 +139,45 @@ export default function AdminDashboard() {
     setShowForm(false);
     setEditing(null);
     setPreview(null);
+
+    const label = tab.charAt(0).toUpperCase() + tab.slice(1);
+    toast.success(
+      editing
+        ? `${label} "${form.title || form.item || form.jenis}" updated`
+        : `${label} created`
+    );
   }
 
   async function handleDelete(id: number) {
+    if (deletingId !== null) return;
     if (!confirm("Delete this item?")) return;
-    await fetch(`/api/${tab}/${id}`, { method: "DELETE" });
-    await fetchData(tab);
+
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/${tab}/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json();
+        toast.error(data.error || "Delete failed");
+        return;
+      }
+      await fetchData(tab);
+      toast.success(`${tab.charAt(0).toUpperCase() + tab.slice(1)} deleted`);
+    } catch {
+      toast.error("Delete failed");
+    } finally {
+      setDeletingId(null);
+    }
   }
 
   async function handleLogout() {
-    await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/admin/login");
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/admin/login");
+    } finally {
+      setLoggingOut(false);
+    }
   }
 
   async function handleImageUpload(file: File) {
@@ -157,12 +200,15 @@ export default function AdminDashboard() {
 
       const data = await res.json();
       if (!res.ok) {
-        setFormError(data.error || "Upload failed");
+        const message = data.error || "Upload failed";
+        setFormError(message);
+        toast.error(message);
         return;
       }
 
       setForm({ ...form, images: data.url });
       setPreview(data.url);
+      toast.success("Image uploaded");
     } catch (err) {
       setFormError(err instanceof Error ? err.message : "Upload failed");
     } finally {
@@ -226,9 +272,11 @@ export default function AdminDashboard() {
           </Link>
           <button
             onClick={handleLogout}
-            className="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all"
+            disabled={loggingOut}
+            className="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all disabled:opacity-50"
           >
-            <LogOut className="w-4 h-4" /> Logout
+            {loggingOut ? <Loader2 className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
+            {loggingOut ? "Logging out..." : "Logout"}
           </button>
         </div>
       </aside>
@@ -247,10 +295,12 @@ export default function AdminDashboard() {
           </div>
           <div className="flex gap-3">
             <button
-              onClick={() => fetchData(tab)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60 border border-zinc-800 transition-all"
+              onClick={() => fetchData(tab, true)}
+              disabled={refreshing}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60 border border-zinc-800 transition-all disabled:opacity-50"
             >
-              <RefreshCw className="w-4 h-4" /> Refresh
+              <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
+              {refreshing ? "Refreshing..." : "Refresh"}
             </button>
             <button
               onClick={handleNew}
@@ -384,8 +434,9 @@ export default function AdminDashboard() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white transition-all"
+                    className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white transition-all flex items-center justify-center gap-2"
                   >
+                    {saving && <Loader2 className="w-4 h-4 animate-spin" />}
                     {saving ? "Saving..." : editing ? "Update" : "Create"}
                   </button>
                 </div>
@@ -396,7 +447,12 @@ export default function AdminDashboard() {
 
         {/* Table */}
         {tab === "experience" ? (
-          <ExperienceTable data={experiences} onEdit={handleEdit} onDelete={handleDelete} />
+          <ExperienceTable
+            data={experiences}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            deletingId={deletingId}
+          />
         ) : (
         <div className="overflow-x-auto rounded-xl border border-zinc-800">
           <table className="w-full">
@@ -471,9 +527,15 @@ export default function AdminDashboard() {
                         </button>
                         <button
                           onClick={() => handleDelete(item.id)}
-                          className="p-2 rounded-lg text-zinc-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                          disabled={deletingId !== null}
+                          title={deletingId === item.id ? "Deleting..." : "Delete"}
+                          className="p-2 rounded-lg text-zinc-500 hover:text-red-400 hover:bg-red-500/10 transition-all disabled:opacity-50"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          {deletingId === item.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin text-red-400" />
+                          ) : (
+                            <Trash2 className="w-4 h-4" />
+                          )}
                         </button>
                       </div>
                     </td>

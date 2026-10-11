@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import ProjectCard from "@/component/ProjectCard";
+import { Loader2 } from "lucide-react";
+import LinkSpinner from "@/component/LinkSpinner";
 
 interface Project {
   id: number; title: string; images: string | null; desc: string | null; tech: string[]; posisi: string;
@@ -20,6 +22,8 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
   const pos = useRef(0);
   const animRef = useRef<number | null>(null);
   const paused = useRef(false);
+  const [pendingId, setPendingId] = useState<number | null>(null);
+  const pendingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const cardWidth = 320;
   const gap = 24;
@@ -46,6 +50,12 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
   }, [projects.length]);
+
+  useEffect(() => {
+    return () => {
+      if (pendingTimer.current) clearTimeout(pendingTimer.current);
+    };
+  }, []);
 
   function onMouseDown(e: React.MouseEvent) {
     isDown.current = true;
@@ -88,7 +98,14 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
 
   function handleCardClick(id: number) {
     if (Math.abs(lastDrag.current) > 5) return;
+    lastDrag.current = 0;
+
+    setPendingId(id);
     router.push(`/project/${id}`);
+
+    // Safety net: reset in case the navigation never settles.
+    if (pendingTimer.current) clearTimeout(pendingTimer.current);
+    pendingTimer.current = setTimeout(() => setPendingId(null), 1500);
   }
 
   return (
@@ -111,9 +128,16 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
               <div
                 key={`${project.id}-${i}`}
                 onClick={() => handleCardClick(project.id)}
-                className={`shrink-0 w-80 ${isDown.current ? "" : "cursor-pointer"}`}
+                className={`shrink-0 w-80 relative ${isDown.current ? "" : "cursor-pointer"} ${
+                  pendingId === project.id ? "pointer-events-none" : ""
+                }`}
               >
                 <ProjectCard project={project} gradientIndex={i} />
+                {pendingId === project.id && (
+                  <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-zinc-950/60 backdrop-blur-[2px]">
+                    <Loader2 className="w-7 h-7 text-blue-400 animate-spin" />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -127,6 +151,7 @@ export default function ProjectSlider({ projects }: { projects: Project[] }) {
         >
           All Projects
           <ArrowRight className="w-4 h-4" />
+          <LinkSpinner />
         </Link>
       </div>
     </div>

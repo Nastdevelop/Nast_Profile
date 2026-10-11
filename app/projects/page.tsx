@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import prisma from "@/lib/prisma";
-import ProjectCard from "@/component/ProjectCard";
+import PendingProjectCard from "@/component/PendingProjectCard";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +49,7 @@ export default async function ProjectsPage() {
                   href={`/project/${project.id}`}
                   className="block h-full"
                 >
-                  <ProjectCard project={p} gradientIndex={i} />
+                  <PendingProjectCard project={p} gradientIndex={i} />
                 </Link>
               );
             })}

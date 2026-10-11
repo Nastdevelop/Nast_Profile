@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/component/AppShell";
+import RouteProgress from "@/component/RouteProgress";
+import { ToastProvider } from "@/component/Toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +32,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-dvh bg-zinc-950 flex flex-col">
-        <AppShell>
-          {children}
-        </AppShell>
+        <ToastProvider>
+          <RouteProgress />
+          <AppShell>
+            {children}
+          </AppShell>
+        </ToastProvider>
       </body>
     </html>
   );

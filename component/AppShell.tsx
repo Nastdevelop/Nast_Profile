@@ -7,7 +7,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   if (pathname.startsWith("/project")) {
-    return <div className="text-zinc-300">{children}</div>;
+    return (
+      <div className="flex flex-col flex-1 text-zinc-300">{children}</div>
+    );
   }
 
   return (

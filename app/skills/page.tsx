@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Skills from "@/component/skills";
+import LinkSpinner from "@/component/LinkSpinner";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +36,7 @@ export default function SkillsPage() {
         <p className="text-center text-sm text-zinc-600">
           <Link href="/" className="hover:text-zinc-400 transition-colors">
             &larr; Back to portfolio
+          <LinkSpinner />
           </Link>
         </p>
       </footer>
