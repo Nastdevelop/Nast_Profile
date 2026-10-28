@@ -4,6 +4,7 @@ import "./globals.css";
 import AppShell from "@/component/AppShell";
 import RouteProgress from "@/component/RouteProgress";
 import { ToastProvider } from "@/component/Toast";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
             {children}
           </AppShell>
         </ToastProvider>
+        <Analytics />
       </body>
     </html>
   );

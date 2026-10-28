@@ -283,7 +283,7 @@ Jagat Nasutio
             {/* Contact info */}
             <div className="flex flex-col gap-3">
               <a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/083173066902"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
@@ -299,10 +299,10 @@ Jagat Nasutio
                   <path d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.5 11.5 0 0 0 .5 12c0 2.03.53 4.01 1.54 5.76L.5 23.5l5.86-1.53A11.49 11.49 0 0 0 12 23.5 11.5 11.5 0 0 0 23.5 12c0-3.07-1.2-5.96-3.48-8.02Zm-8.52 18c-1.85 0-3.67-.5-5.25-1.44l-.38-.23-3.48.91.93-3.39-.25-.39A9.5 9.5 0 0 1 2.5 12 9.5 9.5 0 0 1 12 2.5 9.44 9.44 0 0 1 18.71 5.29 9.44 9.44 0 0 1 21.5 12a9.5 9.5 0 0 1-9.5 9.48Zm5.2-7.12c-.28-.14-1.65-.81-1.9-.9-.26-.09-.45-.14-.64.14-.19.28-.73.9-.9 1.08-.17.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z" />
                 </svg>
                 <span className="font-medium">WhatsApp</span>
-                <span className="ml-auto text-sm text-zinc-500">+62 852-3456-7890</span>
+                <span className="ml-auto text-sm text-zinc-500">+62 831-7306-6902 / 085143279638</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/username"
+                href="https://www.linkedin.com/in/nasutio-developer-928777414/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
@@ -318,10 +318,10 @@ Jagat Nasutio
                   <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z" />
                 </svg>
                 <span className="font-medium">LinkedIn</span>
-                <span className="ml-auto text-sm text-zinc-500">@username</span>
+                <span className="ml-auto text-sm text-zinc-500">@nasutio developer</span>
               </a>
               <a
-                href="mailto:contact@example.com"
+                href="mailto:nasutiodeveloper@gmail.com"
                 className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
               >
                 <svg
@@ -335,10 +335,10 @@ Jagat Nasutio
                   <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
                 </svg>
                 <span className="font-medium">Email</span>
-                <span className="ml-auto text-sm text-zinc-500">contact@example.com</span>
+                <span className="ml-auto text-sm text-zinc-500">nasutiodeveloper@gmail.com</span>
               </a>
               <a
-                href="https://www.tiktok.com/@username"
+                href="https://www.tiktok.com/@nastdevelop0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
@@ -353,10 +353,10 @@ Jagat Nasutio
                   <path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z" />
                 </svg>
                 <span className="font-medium">TikTok</span>
-                <span className="ml-auto text-sm text-zinc-500">@username</span>
+                <span className="ml-auto text-sm text-zinc-500">@Nast Develop</span>
               </a>
               <a
-                href="https://www.instagram.com/username"
+                href="https://www.instagram.com/nastdevelop/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
@@ -372,7 +372,7 @@ Jagat Nasutio
                   <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m11 1a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1m-5 2a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
                 </svg>
                 <span className="font-medium">Instagram</span>
-                <span className="ml-auto text-sm text-zinc-500">@username</span>
+                <span className="ml-auto text-sm text-zinc-500">@nastdevelop</span>
               </a>
             </div>
           </div>
