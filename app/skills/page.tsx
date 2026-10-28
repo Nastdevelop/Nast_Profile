@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import Skills from "@/component/skills";
 import LinkSpinner from "@/component/LinkSpinner";
 
 export const dynamic = "force-dynamic";
@@ -29,7 +28,6 @@ export default function SkillsPage() {
           Every tool I have picked up along the way.
         </p>
 
-        <Skills />
       </div>
 
       <footer className="w-full py-8 border-t border-zinc-800">
