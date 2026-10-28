@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { ArrowDown, ExternalLink } from "lucide-react";
-import Experience from "@/component/Experience"
-import Skills from "@/component/skills"
-import ProjectSlider from "@/component/ProjectSlider"
+import ProjectSlider from "@/component/ProjectSlider";
 import prisma from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -94,43 +92,36 @@ Jagat Nasutio
         </div>
       </section>
 
-      {/* ============ EXPERIENCE ============ */}
-      <section
-        id="experience"
-        className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto"
-      >
-        <div className="text-center mb-4">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full">
-            Journey
-          </span>
-        </div>
-        <h2 className="text-center font-bold text-2xl md:text-3xl text-zinc-100">
-          My Progress
-        </h2>
-        <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
-          Every line of code is a step forward. Here is my learning journey so far.
-        </p>
-        <Experience />
-      </section>
 
-      {/* ============ SKILLS ============ */}
-      <section
-        id="skills"
-        className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto"
-      >
-        <div className="text-center mb-4">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full">
-            Toolbox
-          </span>
-        </div>
-        <h2 className="text-center font-bold text-2xl md:text-3xl text-zinc-100">
-          My Skills
-        </h2>
-        <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
-          I may not learn the fastest, but I never stop growing. Here is the
-          evidence of my continuous progress.
-        </p>
-          <Skills limit={5} />
+
+        {/* ============ EXPERIENCE ============ */}
+        <section className="w-full py-8 md:py-10 px-6 max-w-5xl mx-auto">
+          <div className="text-center mb-6">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full">
+              Experience
+            </span>
+            <h2 className="mt-3 text-2xl md:text-3xl font-bold text-zinc-100">
+              Experience
+            </h2>
+          </div>
+          <div className="border border-zinc-800 bg-gradient-to-br from-zinc-900/70 to-zinc-950/60 rounded-2xl px-6 md:px-12 py-8 md:py-10">
+            <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-center">
+              <div className="flex items-center justify-center gap-8 md:gap-10">
+                <div className="flex flex-col items-center text-center">
+                  <span className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent leading-none">10+</span>
+                  <span className="text-xs md:text-sm text-zinc-400 mt-2 uppercase tracking-wide">Projects</span>
+                </div>
+                <div className="h-12 md:h-16 w-px bg-zinc-800" />
+                <div className="flex flex-col items-center text-center">
+                  <span className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent leading-none">2+</span>
+                  <span className="text-xs md:text-sm text-zinc-400 mt-2 uppercase tracking-wide">Years</span>
+                </div>
+              </div>
+              <p className="text-center md:text-left text-zinc-300 leading-relaxed">
+                I&apos;ve built several production-ready projects, ranging from landing pages to full web applications. From simple marketing sites to complex systems, I focus on clean code, reliable functionality, and seamless user experiences.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* ============ PROJECTS ============ */}
@@ -151,6 +142,183 @@ Jagat Nasutio
           </p>
 
           <ProjectSlider projects={projects} />
+        </section>
+
+        {/* ============ CONTACT ============ */}
+        <section  id="contact" className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto">
+          <div className="text-center mb-4">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full">
+              Contact
+            </span>
+          </div>
+          <h2 className="text-center font-bold text-2xl md:text-3xl text-zinc-100">
+            Get In Touch
+          </h2>
+          <p className="text-center text-zinc-500 mt-2 max-w-lg mx-auto">
+            Kirim pesan langsung ke email. Bisa juga hubungi lewat channel di samping.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            {/* Form */}
+            <form
+              className="flex flex-col gap-4 bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6"
+              action="/api/contact"
+              method="post"
+              encType="application/x-www-form-urlencoded"
+            >
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-sm text-zinc-300">
+                  Nama
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                  placeholder="Nama kamu"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="text-sm text-zinc-300">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                  placeholder="email@kamu.com"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="subject" className="text-sm text-zinc-300">
+                  Subjek
+                </label>
+                <input
+                  id="subject"
+                  name="subject"
+                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                  placeholder="Subjek pesan"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="text-sm text-zinc-300">
+                  Pesan
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                  placeholder="Tulis pesan kamu..."
+                />
+              </div>
+              <button
+                type="submit"
+                className="mt-2 inline-flex justify-center items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-medium px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-cyan-600/25 hover:shadow-cyan-500/40"
+              >
+                Kirim
+              </button>
+            </form>
+
+            {/* Contact info */}
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://wa.me/6281234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-green-400"
+                >
+                  <path d="M20.52 3.48A11.94 11.94 0 0 0 12 .5 11.5 11.5 0 0 0 .5 12c0 2.03.53 4.01 1.54 5.76L.5 23.5l5.86-1.53A11.49 11.49 0 0 0 12 23.5 11.5 11.5 0 0 0 23.5 12c0-3.07-1.2-5.96-3.48-8.02Zm-8.52 18c-1.85 0-3.67-.5-5.25-1.44l-.38-.23-3.48.91.93-3.39-.25-.39A9.5 9.5 0 0 1 2.5 12 9.5 9.5 0 0 1 12 2.5 9.44 9.44 0 0 1 18.71 5.29 9.44 9.44 0 0 1 21.5 12a9.5 9.5 0 0 1-9.5 9.48Zm5.2-7.12c-.28-.14-1.65-.81-1.9-.9-.26-.09-.45-.14-.64.14-.19.28-.73.9-.9 1.08-.17.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33Z" />
+                </svg>
+                <span className="font-medium">WhatsApp</span>
+                <span className="ml-auto text-sm text-zinc-500">+62 852-3456-7890</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/username"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-blue-400"
+                >
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z" />
+                </svg>
+                <span className="font-medium">LinkedIn</span>
+                <span className="ml-auto text-sm text-zinc-500">@username</span>
+              </a>
+              <a
+                href="mailto:contact@example.com"
+                className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-red-400"
+                >
+                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
+                </svg>
+                <span className="font-medium">Email</span>
+                <span className="ml-auto text-sm text-zinc-500">contact@example.com</span>
+              </a>
+              <a
+                href="https://www.tiktok.com/@username"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z" />
+                </svg>
+                <span className="font-medium">TikTok</span>
+                <span className="ml-auto text-sm text-zinc-500">@username</span>
+              </a>
+              <a
+                href="https://www.instagram.com/username"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/30 rounded-xl px-4 py-3 text-zinc-300 hover:text-zinc-100 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-pink-400"
+                >
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m11 1a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1m-5 2a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
+                </svg>
+                <span className="font-medium">Instagram</span>
+                <span className="ml-auto text-sm text-zinc-500">@username</span>
+              </a>
+            </div>
+          </div>
         </section>
         
         <footer className="w-full py-6 border-t border-zinc-800">

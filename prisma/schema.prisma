@@ -7,38 +7,33 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id       Int       @id @default(autoincrement())
-  email    String    @unique
-  password String
-  name     String?
+model Experience {
+  id      Int    @id @default(autoincrement())
+  jenis   String
+  content String
+  tahun   String
+}
 
-  project  Project[]
-  skill    Skill[]
-  sessions Session[]
+model Project {
+  id       Int     @id @default(autoincrement())
+  title    String
+  images   String?
+  authorId Int
+  desc     String?
+  posisi   String  @default("fullstack")
+  tech     String  @default("[]")
+  url      String?
+  content  String?
+  User     User    @relation(fields: [authorId], references: [id])
 }
 
 model Session {
   id        Int      @id @default(autoincrement())
   token     String   @unique
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
   expiresAt DateTime
   createdAt DateTime @default(now())
-}
-
-model Project {
-  id       Int    @id @default(autoincrement())
-  title    String
-  images   String?
-  desc     String?
-  content  String?
-  tech     String  @default("[]")
-  posisi   String @default("fullstack")
-  url      String?
-
-  authorId Int
-  author   User   @relation(fields: [authorId], references: [id])
+  User      User     @relation(fields: [userId], references: [id])
 }
 
 model Skill {
@@ -46,14 +41,16 @@ model Skill {
   item     String @unique
   cate     String
   purpose  String
-
   authorId Int
-  author   User   @relation(fields: [authorId], references: [id])
+  User     User   @relation(fields: [authorId], references: [id])
 }
 
-model Experience {
-  id      Int    @id @default(autoincrement())
-  jenis   String
-  content String
-  tahun   String
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  password String
+  name     String?
+  Project  Project[]
+  Session  Session[]
+  Skill    Skill[]
 }
