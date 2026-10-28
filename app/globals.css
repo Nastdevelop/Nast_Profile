@@ -35,6 +35,10 @@
     animation: progressSlide 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
 }
 
 @keyframes fadeIn {
@@ -80,6 +84,15 @@
   }
   to {
     text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.3);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
