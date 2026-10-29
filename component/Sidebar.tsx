@@ -1,22 +1,23 @@
 "use client";
 
 import {
-  UserRound, CodeXml, Kanban, Sparkles, ChevronRight, Menu, X, Shield,
+  UserRound, CodeXml, Sparkles, Mail, ChevronRight, Menu, X, Shield,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
 const navItems = [
   { href: "#hero", label: "Profile", icon: UserRound },
   { href: "#experience", label: "Experience", icon: CodeXml },
-  { href: "#skills", label: "Skills", icon: Kanban },
   { href: "#projects", label: "Projects", icon: Sparkles },
+  { href: "#contact", label: "Contact", icon: Mail },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -28,7 +29,7 @@ export default function Sidebar() {
   }, []);
 
   useEffect(() => {
-    if (pathname.startsWith("/admin")) return;
+    if (pathname !== "/") return;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -52,6 +53,10 @@ export default function Sidebar() {
 
   function handleNav(href: string) {
     setOpen(false);
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
+    }
     const el = document.getElementById(href.slice(1));
     if (el) el.scrollIntoView({ behavior: "smooth" });
   }

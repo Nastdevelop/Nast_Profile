@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowDown, ExternalLink } from "lucide-react";
 import ProjectSlider from "@/component/ProjectSlider";
+import ContactForm from "@/component/ContactForm";
 import prisma from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -33,7 +34,7 @@ export default async function Home() {
           {/* Avatar */}
           <div className="shrink-0">
             <div className="relative">
-              <div className="w-48 h-48 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-400 p-1 shadow-xl shadow-blue-500/20">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-400 p-1 shadow-xl shadow-blue-500/20">
                 <div className="w-full h-full rounded-full bg-zinc-900 overflow-hidden">
                   <Image
                     src="/images/577ed941-39b9-4c80-83d0-cb3579c999a6.jpg"
@@ -48,17 +49,17 @@ export default async function Home() {
           </div>
 
           {/* Text */}
-          <div className="flex flex-col gap-4 text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-100 leading-tight">
+          <div className="flex flex-col gap-4 w-full min-w-0 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-100 leading-tight break-words">
               Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-glow">
 Jagat Nasutio
               </span>
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-zinc-400">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-zinc-400">
               Full Stack Web Developer
             </h2>
-            <p className="text-base text-zinc-500 max-w-lg leading-relaxed">
+            <p className="text-sm sm:text-base text-zinc-500 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               An aspiring Full-Stack Web Developer with a strong vision to master
               the entire web development lifecycle. I combine a passion for
               creating seamless user experiences with a drive to build robust
@@ -66,17 +67,17 @@ Jagat Nasutio
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mt-4 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-3 sm:gap-4 mt-4 justify-center lg:justify-start">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40"
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm sm:text-base font-medium px-5 sm:px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40"
               >
                 View CV
                 <ExternalLink className="w-4 h-4" />
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-zinc-100 font-medium px-6 py-2.5 rounded-xl transition-all duration-300"
+                className="inline-flex items-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-zinc-100 text-sm sm:text-base font-medium px-5 sm:px-6 py-2.5 rounded-xl transition-all duration-300"
               >
                 My Projects
                 <ArrowDown className="w-4 h-4" />
@@ -84,7 +85,7 @@ Jagat Nasutio
             </div>
 
             {/* Tech Slider */}
-            <div className="mt-6 w-full max-w-xl">
+            <div className="mt-6 w-full max-w-xl overflow-hidden">
               <div className="relative overflow-hidden">
                 <div className="flex animate-marquee gap-8 w-max">
                   {[ 
@@ -152,7 +153,10 @@ Jagat Nasutio
 
 
         {/* ============ EXPERIENCE ============ */}
-        <section className="w-full py-8 md:py-10 px-6 max-w-5xl mx-auto">
+        <section
+          id="experience"
+          className="w-full scroll-mt-24 py-8 md:py-10 px-6 max-w-5xl mx-auto"
+        >
           <div className="text-center mb-6">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full">
               Experience
@@ -184,7 +188,7 @@ Jagat Nasutio
         {/* ============ PROJECTS ============ */}
         <section
           id="projects"
-          className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto"
+          className="w-full scroll-mt-20 py-12 md:py-16 px-6 max-w-5xl mx-auto"
         >
           <div className="text-center mb-4">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">
@@ -202,7 +206,10 @@ Jagat Nasutio
         </section>
 
         {/* ============ CONTACT ============ */}
-        <section  id="contact" className="w-full py-12 md:py-16 px-6 max-w-5xl mx-auto">
+        <section
+          id="contact"
+          className="w-full scroll-mt-20 py-12 md:py-16 px-6 max-w-5xl mx-auto"
+        >
           <div className="text-center mb-4">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full">
               Contact
@@ -217,68 +224,7 @@ Jagat Nasutio
 
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* Form */}
-            <form
-              className="flex flex-col gap-4 bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6"
-              action="/api/contact"
-              method="post"
-              encType="application/x-www-form-urlencoded"
-            >
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm text-zinc-300">
-                  Nama
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
-                  placeholder="Nama kamu"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm text-zinc-300">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
-                  placeholder="email@kamu.com"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="subject" className="text-sm text-zinc-300">
-                  Subjek
-                </label>
-                <input
-                  id="subject"
-                  name="subject"
-                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
-                  placeholder="Subjek pesan"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-sm text-zinc-300">
-                  Pesan
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full rounded-xl bg-zinc-950/60 border border-zinc-800 px-4 py-2.5 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-cyan-400"
-                  placeholder="Tulis pesan kamu..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="mt-2 inline-flex justify-center items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-medium px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-cyan-600/25 hover:shadow-cyan-500/40"
-              >
-                Kirim
-              </button>
-            </form>
+            <ContactForm />
 
             {/* Contact info */}
             <div className="flex flex-col gap-3">
